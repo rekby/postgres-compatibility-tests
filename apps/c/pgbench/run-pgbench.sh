@@ -13,10 +13,12 @@ set -eu
 for BENCHMARK in select-only simple-update tpcb-like; do
     for PROTOCOL in simple prepared; do
         # for CLIENTS in 1 10; do
-        CLIENTS=1
+        CLIENTS=2
         echo
         echo "$BENCHMARK $PROTOCOL, $CLIENTS clients"
-        pgbench -n -T $PGBENCH_TESTTIME -b $BENCHMARK --protocol=$PROTOCOL --client=$CLIENTS
+        CMD="pgbench -n -T $PGBENCH_TESTTIME -b $BENCHMARK --protocol=$PROTOCOL --client=$CLIENTS"
+        echo "cmd: $CMD"
+        eval "$CMD"
         # done
     done
 done
