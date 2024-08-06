@@ -459,7 +459,12 @@ func checkQuery(stat *QueryStats, rules Rules, dbPool *internal.YdbPool, queryTe
 		}
 	}
 
-	reason = fmt.Sprintf("%v (%v): %#v", ydbErr.Name(), ydbErr.Code(), unknownIssues)
+	if ydbErr == nil {
+		reason = fmt.Sprintf("non ydb err: %v", err)
+	} else {
+		reason = fmt.Sprintf("%v (%v): %#v", ydbErr.Name(), ydbErr.Code(), unknownIssues)
+
+	}
 	stat.CountAsUnknown(reason, queryText)
 	return reason, checkResultErrUnknown
 }
