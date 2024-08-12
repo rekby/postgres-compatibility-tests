@@ -22,6 +22,22 @@ FROM asd___sss t
 USING "kkk" AS base
 WHERE`,
 		},
+		{
+			from:   `LOCK TABLE "asd"."ffa" IN EXCLUSIVE MODE`,
+			result: `LOCK TABLE asd___ffa IN EXCLUSIVE MODE`,
+		},
+		{
+			from:   `DROP TABLE IF EXISTS "aaa"."bbb"`,
+			result: `DROP TABLE IF EXISTS aaa___bbb`,
+		},
+		{
+			from:   `GRANT SELECT ON sss.tt to public`,
+			result: `GRANT SELECT ON sss___tt to public`,
+		},
+		{
+			from:   `SELECT s.t.f FROM s.t`,
+			result: `SELECT s___t.f FROM s___t`,
+		},
 	}
 
 	for i, test := range table {

@@ -474,10 +474,14 @@ type ReplacePair struct {
 	To   string
 }
 
-var schemaTableRegexp = regexp.MustCompile(`(?i)(CREATE TABLE|FROM|INSERT INTO|JOIN|UPDATE)\s+"?([^\s."]+)"?\."?([^\s."]+)"?`)
+var (
+	schemaTableRegexp = regexp.MustCompile(`(?is)(EXISTS|FROM|INSERT INTO|JOIN|\s+ON|ROOTPARTITION|TABLE|UPDATE)\s+"?([^\s."]+)"?\."?([^\s."]+)"?`)
+	schemaTableField  = regexp.MustCompile(`"?([^\s."]+)"?\."?([^\s."]+)"?\."?([^\s."]+)"?`)
+)
 
 func fixSchemaNames(queryText string) string {
 	queryText = schemaTableRegexp.ReplaceAllString(queryText, "${1} ${2}___${3}")
+	queryText = schemaTableField.ReplaceAllString(queryText, "${1}___${2}.${3}")
 	return queryText
 }
 
