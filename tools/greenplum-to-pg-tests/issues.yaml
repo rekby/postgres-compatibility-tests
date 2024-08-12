@@ -12,10 +12,6 @@ issues:
     count: 8256783
     issue_regexp: Cannot find table
     print_issue_to_log: True
-  - name: Select from pg_tables
-    count: 3930760
-    query_regexp:
-      - (?is)SELECT.*FROM\s+pg_
   - name: 'PG: InsertStmt: not supported onConflictClause'
     count: 1482133
     issue_link: https://github.com/ydb-platform/ydb/issues/7194
@@ -90,7 +86,7 @@ issues:
     tag:
       - YQLParser
     issue_regexp:
-      - '^RawStmt: alternative is not implemented yet : 277$'
+      - '^RawStmt: alternative is not implemented yet : 223$'
     example: create table t as select 1
   - name: Stored procedures
     count: 607374
@@ -114,12 +110,8 @@ issues:
   - name: 'PG: Support NOT DISTINCT'
     count: 11
     issue_regexp:
-      - 'A_Expr_Kind unsupported value: 4'
+      - '^A_Expr_Kind unsupported value: 4$'
     example: SELECT 1 IS NOT DISTINCT FROM 2
-  - name: 'PG: unrecognized configuration parameter'
-    count: 1621022
-    issue_regexp:
-      - unrecognized configuration parameter
   - name: Call function from own schema
     count: 480183
     issue_regexp:
@@ -127,13 +119,12 @@ issues:
   - name: Unimplemented Discard
     count: 0
     issue_regexp:
-      - '^RawStmt: alternative is not implemented yet : 282$'
+      - '^RawStmt: alternative is not implemented yet : 226$'
     example: DISCARD ALL
   - name: ANALYZE
     count: 15071109
     issue_regexp:
       - "^RawStmt: alternative is not implemented yet : 220$"
-      - "^RawStmt: alternative is not implemented yet : 276$"
     example: |
       ANALYZE lc;
       analyse q;
@@ -141,8 +132,8 @@ issues:
     issue_regexp: "^VariableSetStmt, not supported kind: 4$"
     query_regexp: RESET ROLE
   - name: SELECT setconfig as
-    issue_regexp: "^Expected AConst node as is_local arg, but got node with tag: 357$"
+    issue_regexp: "^Expected AConst node as is_local arg, but got node with tag: 61$"
     example: SELECT set_config($1, $2, $3) as myvar
   - name: Lock table
-    issue_regexp: "^RawStmt: alternative is not implemented yet : 289$"
+    issue_regexp: "^RawStmt: alternative is not implemented yet : 227$"
     example: LOCK TABLE asd IN EXCLUSIVE MODE
