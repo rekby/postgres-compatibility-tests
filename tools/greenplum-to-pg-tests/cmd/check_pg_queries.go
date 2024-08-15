@@ -475,7 +475,7 @@ type ReplacePair struct {
 }
 
 var (
-	schemaTableRegexp = regexp.MustCompile(`(?is)(EXISTS|FROM|INSERT INTO|JOIN|\s+ON|ROOTPARTITION|TABLE|UPDATE)\s+"?([^\s."]+)"?\."?([^\s."]+)"?`)
+	schemaTableRegexp = regexp.MustCompile(`(?is)(EXISTS|FROM|INSERT INTO|JOIN|GRANT\s+\w+\s+ON|ROOTPARTITION|TABLE|UPDATE)\s+"?([^\s."]+)"?\."?([^\s."]+)"?`)
 	schemaTableField  = regexp.MustCompile(`"?([^\s."]+)"?\."?([^\s."]+)"?\."?([^\s."]+)"?`)
 )
 

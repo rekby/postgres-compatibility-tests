@@ -38,6 +38,21 @@ WHERE`,
 			from:   `SELECT s.t.f FROM s.t`,
 			result: `SELECT s___t.f FROM s___t`,
 		},
+		{
+			// no changes
+			from: `select a.attname, a.atttypid, t.typname
+                  from pg_attribute a
+                       left outer join pg_type t on (a.atttypid = t.oid)
+                  where attrelid = 'pg_catalog.gp_id'::regclass and
+                       (attnum > 0 or attname='oid')
+                  order by attnum`,
+			result: `select a.attname, a.atttypid, t.typname
+                  from pg_attribute a
+                       left outer join pg_type t on (a.atttypid = t.oid)
+                  where attrelid = 'pg_catalog.gp_id'::regclass and
+                       (attnum > 0 or attname='oid')
+                  order by attnum`,
+		},
 	}
 
 	for i, test := range table {
