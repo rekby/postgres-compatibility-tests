@@ -118,7 +118,7 @@ CREATE TABLE alert_instance (
     current_state_end int DEFAULT 0 NOT NULL,
     current_reason character varying(190),
     result_fingerprint character varying(16),
-    __ydb_stub_id BIGSERIAL PRIMARY KEY
+    __pg_stub_id BIGSERIAL PRIMARY KEY
 );
 
 
@@ -386,7 +386,7 @@ CREATE TABLE correlation (
     description text NOT NULL,
     config text,
     provisioned boolean DEFAULT false NOT NULL,
-    __ydb_stub_id BIGSERIAL PRIMARY KEY
+    __pg_stub_id BIGSERIAL PRIMARY KEY
 );
 
 
@@ -617,7 +617,7 @@ CREATE TABLE file (
     created timestamp without time zone NOT NULL,
     size int NOT NULL,
     mime_type character varying(255) NOT NULL,
-    __ydb_stub_id BIGSERIAL PRIMARY KEY
+    __pg_stub_id BIGSERIAL PRIMARY KEY
 );
 
 
@@ -631,7 +631,7 @@ CREATE TABLE file_meta (
     path_hash character varying(64) NOT NULL,
     key character varying(191) NOT NULL,
     value character varying(1024) NOT NULL,
-    __ydb_stub_id BIGSERIAL PRIMARY KEY
+    __pg_stub_id BIGSERIAL PRIMARY KEY
 );
 
 
