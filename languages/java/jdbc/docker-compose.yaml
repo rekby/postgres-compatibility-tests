@@ -10,8 +10,7 @@ services:
       - "YDB_USE_IN_MEMORY_PDISKS=true"
       - "POSTGRES_USER=${YDB_PG_USER:-root}"
       - "POSTGRES_PASSWORD=${YDB_PG_PASSWORD:-1234}"
-      - "YDB_FEATURE_FLAGS=enable_temp_tables"
-      - "YDB_TABLE_ENABLE_PREPARED_DDL=true"
+      - "YDB_EXPERIMENTAL_PG=1"
     healthcheck:
       test: "/bin/sh /health_check"
       interval: 1s
