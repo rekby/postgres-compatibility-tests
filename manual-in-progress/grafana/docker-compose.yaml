@@ -12,8 +12,8 @@ services:
       - GF_DATABASE_NAME=local
       - GF_DATABASE_USER=root
       - GF_DATABASE_PASSWORD=1234
-    # ports:
-    #   - '3000:3000'
+    ports:
+      - '3000:3000'
 #     volumes:
 #       - 'grafana_storage:/var/lib/grafana'
 # volumes:
